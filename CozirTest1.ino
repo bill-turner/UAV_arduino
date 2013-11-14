@@ -13,7 +13,7 @@
  
 // ====================== Declarations ==========================
 #define aref_voltage 3.3         // we tie 3.3V to ARef 
-#define NUMSAMPLES 5       // number of samples taken to average over
+#define NUMSAMPLES 50       // number of samples taken to average over
 #define analogpin A0
 //-------------------- end declarations -----------------------------
 
@@ -46,11 +46,10 @@ void loop() {
   for (i=0; i< NUMSAMPLES; i++) {
     samples[i] = analogRead(analogpin);
     sample_co2_conc = convertVoltage(aref_voltage, samples[i]);
-    Serial.print(i+1);
-    Serial.print(": ");
-    Serial.print(sample_co2_conc);
-    Serial.print("ppm, ");
-    delay(2000); // dont go below 7
+  //  Serial.print(i+1);
+  //  Serial.print(": ");
+  //  Serial.print(sample_co2_conc);
+      delay(10); // dont go below 7
   }
   // average all the samples out
   average = 0;
@@ -58,7 +57,7 @@ void loop() {
     average += samples[i];
   }
   average /= NUMSAMPLES;
-  Serial.println("");
+  Serial.println("screw off man!");
   Serial.print("Average raw analog reading "); 
   Serial.println(average);
   

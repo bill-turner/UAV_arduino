@@ -13,7 +13,7 @@
  
 // =============================== Declarations ===============================
 #define aref_voltage 3.3         // we tie 3.3V to ARef 
-<<<<<<< HEAD
+
 #define NUMSAMPLES 50       // number of samples taken to average over
 #define analogpin A0
 //-------------------- end declarations -----------------------------
@@ -21,7 +21,7 @@
 #define NUMSAMPLES 5       // number of samples taken to average over
 #define analogpin A0	// CO2 sensor analog pin to A0
 //--------------------------- end declarations --------------------------------
->>>>>>> 5c4f5c65fb756a895cac04583301868109a3f315
+
 
 // ================================== Setup ===================================
 void setup() {
@@ -50,7 +50,7 @@ void loop() {
   
   // take 5 samples at 2 second increments
   for (i=0; i< NUMSAMPLES; i++) {
-<<<<<<< HEAD
+
     samples[i] = analogRead(analogpin);
     sample_co2_conc = convertVoltage(aref_voltage, samples[i]);
   //  Serial.print(i+1);
@@ -65,7 +65,7 @@ void loop() {
     Serial.print(sample_co2_conc);
     Serial.print("ppm, ");
     delay(2000); // delay between reads must be > 7;
->>>>>>> 5c4f5c65fb756a895cac04583301868109a3f315
+
   }
   // average all the samples out
   average = 0;

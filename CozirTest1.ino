@@ -17,7 +17,7 @@
 #define NUMSAMPLES 50       // number of samples taken to average over
 #define analogpin A0
 //-------------------- end declarations -----------------------------
-=======
+
 #define NUMSAMPLES 5       // number of samples taken to average over
 #define analogpin A0	// CO2 sensor analog pin to A0
 //--------------------------- end declarations --------------------------------
@@ -57,7 +57,7 @@ void loop() {
   //  Serial.print(": ");
   //  Serial.print(sample_co2_conc);
       delay(10); // dont go below 7
-=======
+
     samples[i] = analogRead(analogpin); // this returns an int between 0-1023
     sample_co2_conc = convertVoltage(aref_voltage, samples[i]); 
     Serial.print(i+1);

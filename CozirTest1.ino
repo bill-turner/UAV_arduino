@@ -1,6 +1,6 @@
 /*
  COZIR CO2 Sensor Test Code
- Reads an analog input on pin A0, converts it to voltage, and prints the result to the serial monitor.
+ Reads analog pin A0, converts it to voltage, and prints to the serial monitor.
  Adam J Burns
  adam@aburns.us
  Nov 12 2013
@@ -11,26 +11,32 @@
          (4) set up webpage to display data
  */
  
-// ====================== Declarations ==========================
+// =============================== Declarations ===============================
 #define aref_voltage 3.3         // we tie 3.3V to ARef 
+<<<<<<< HEAD
 #define NUMSAMPLES 50       // number of samples taken to average over
 #define analogpin A0
 //-------------------- end declarations -----------------------------
+=======
+#define NUMSAMPLES 5       // number of samples taken to average over
+#define analogpin A0	// CO2 sensor analog pin to A0
+//--------------------------- end declarations --------------------------------
+>>>>>>> 5c4f5c65fb756a895cac04583301868109a3f315
 
-// ====================== Setup ====================================
+// ================================== Setup ===================================
 void setup() {
   // initialize serial communication at 9600 bits per second:
   Serial.begin(9600);
-  delay(100);
+  delay(100); // not needed but helps prevent errors during reset
     
-  //--------------------------DON'T CHANGE THIS--------------------
-  analogReference(EXTERNAL); //DON'T CHANGE THIS
-  //-----------------------DON'T CHANGE THIS------------------------
+  //-----------------------------DON'T CHANGE THIS-----------------------------
+  analogReference(EXTERNAL); // *DON'T CHANGE THIS LINE*
+  //-----------------------------DON'T CHANGE THIS-----------------------------
   
   delay(200);
+  analogRead(analogpin); // dummy read to make sure aref=external
   Serial.println("Sensor power up");
-  analogRead(analogpin);
-  delay(3000); //let sensor warm up
+  delay(3000); //let sensor warm up for 3 seconds
 }
 // ------------------------ end setup -------------------------
 
@@ -44,12 +50,22 @@ void loop() {
   
   // take 5 samples at 2 second increments
   for (i=0; i< NUMSAMPLES; i++) {
+<<<<<<< HEAD
     samples[i] = analogRead(analogpin);
     sample_co2_conc = convertVoltage(aref_voltage, samples[i]);
   //  Serial.print(i+1);
   //  Serial.print(": ");
   //  Serial.print(sample_co2_conc);
       delay(10); // dont go below 7
+=======
+    samples[i] = analogRead(analogpin); // this returns an int between 0-1023
+    sample_co2_conc = convertVoltage(aref_voltage, samples[i]); 
+    Serial.print(i+1);
+    Serial.print(": ");
+    Serial.print(sample_co2_conc);
+    Serial.print("ppm, ");
+    delay(2000); // delay between reads must be > 7;
+>>>>>>> 5c4f5c65fb756a895cac04583301868109a3f315
   }
   // average all the samples out
   average = 0;
